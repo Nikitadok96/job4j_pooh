@@ -9,7 +9,6 @@ import java.util.concurrent.CountDownLatch;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled
 class TopicSchemaTest {
 
     @Test

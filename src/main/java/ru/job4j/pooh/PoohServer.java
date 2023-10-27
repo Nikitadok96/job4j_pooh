@@ -20,7 +20,6 @@ public class PoohServer {
     private void runServer() {
         ExecutorService pool = Executors.newCachedThreadPool();
         try (ServerSocket server = new ServerSocket(9000)) {
-            System.out.println("Pooh is ready ...");
             while (!server.isClosed()) {
                 Socket socket = server.accept();
                 pool.execute(() -> {
@@ -36,14 +35,10 @@ public class PoohServer {
                             var text = details[2];
                             if (action.equals("intro")) {
                                 if (name.equals("queue")) {
-                                    queueSchema.addReceiver(
-                                            new SocketReceiver(text, new PrintWriter(out))
-                                    );
+                                    queueSchema.addReceiver(new SocketReceiver(text, new PrintWriter(out)));
                                 }
                                 if (name.equals("topic")) {
-                                    topicSchema.addReceiver(
-                                            new SocketReceiver(text, new PrintWriter(out))
-                                    );
+                                    topicSchema.addReceiver(new SocketReceiver(text, new PrintWriter(out)));
                                 }
                             }
                             if (action.equals("queue")) {
@@ -63,7 +58,7 @@ public class PoohServer {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         var pooh = new PoohServer();
         pooh.runSchemas();
         pooh.runServer();
