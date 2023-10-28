@@ -11,6 +11,7 @@ public class ConsumerClient {
         try (var out = new PrintWriter(socket.getOutputStream());
              var input = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
             out.println("intro;queue;weather");
+
             out.flush();
             while (true) {
                 var text = input.readLine();
